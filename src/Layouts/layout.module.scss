@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px;
+
+  .my-header {
+    display: flex;
+    gap: 16px;
+
+    a {
+      color: black;
+      transition: 0.125;
+      font-size: 18px;
+
+      &:hover {
+        color: darkslategrey;
+      }
+    }
+  }
+}

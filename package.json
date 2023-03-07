@@ -3,23 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
+    "@tanstack/react-table": "^8.7.9",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "classnames": "^2.3.2",
+    "concurrently": "^7.6.0",
+    "node-sass": "^8.0.0",
+    "primeflex": "^3.3.0",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"yarn generate:watch\" \"react-scripts start\"",
+    "cleanup:css": "rimraf ./**/*.scss.d.ts",
+    "generate": "yarn typed-scss-modules \"src/**/*.module.scss\" -n none -e default",
+    "generate:watch": "yarn typed-scss-modules \"src/**/*.module.scss\" -w -n none -e default -L error",
+    "pregenerate": "yarn cleanup:css",
+    "prestart": "yarn generate",
+    "precleanup:css": "yarn install",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typed-scss-modules": "^7.0.2"
   }
 }
